@@ -8,11 +8,13 @@ jobs:
     name: Deploying To Surge
     steps:
       - uses: actions/checkout@v2
-
       - name: Installing NodeJs
         uses: actions/setup-node@v2-beta
         with:
           node-version: 12
-
+     
       - name: Install Surge
+        run: npm install -g surge
+
+      - name: Run Surge
         run:  surge ./ surgetutorialexample.surge.sh ${{secrets.SURGE_TOKEN}}
