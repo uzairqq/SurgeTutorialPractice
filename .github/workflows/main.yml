@@ -1,0 +1,18 @@
+name: SurgeExamplePractice
+
+on: [push]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploying To Surge
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Installing NodeJs
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+
+      - name: Install Surge
+        run:  surge ./ surgetutorialexample.surge.sh ${{secrets.SURGE_TOKEN}}
